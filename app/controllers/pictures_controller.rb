@@ -18,4 +18,15 @@ class PicturesController < ApplicationController
 
     render("pic_templates/details.html.erb")
   end
+  
+  def byyyeee
+    
+    pic_id = params.fetch("id_to_delete")
+    picture = Photo.where({:id => pic_id}).at(0)
+    
+    picture.destroy
+    
+    redirect_to("/popular")
+  end 
+  
 end
