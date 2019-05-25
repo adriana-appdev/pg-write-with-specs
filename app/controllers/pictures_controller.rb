@@ -29,4 +29,9 @@ class PicturesController < ApplicationController
     redirect_to("/popular")
   end 
   
+  def blank_form 
+    @all_users = User.all.order({ :username => :asc })
+    render("pic_templates/new_form.html.erb")
+  end
+  
 end

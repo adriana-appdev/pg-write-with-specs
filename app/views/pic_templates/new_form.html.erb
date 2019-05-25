@@ -1,0 +1,42 @@
+<h1>Add a new photo</h1>
+
+<form action="/create_photo_record">
+  <label for="url_input">
+    Image URL
+  </label>
+  
+  <input
+    name="pic_image"
+    type="text"
+    id="url_input"
+    placeholder="Enter a url for the image..."
+  >
+
+  <label for="caption_box">
+    Caption
+  </label>
+  
+  <textarea
+    id="caption_box"
+    name="pic_caption"
+    placeholder="Enter a caption for the photo..."
+  ></textarea>
+
+  <label for="owner_dropdown">
+    Owner
+  </label>
+  
+  <select id="owner_dropdown" name="poster_id">
+    <% @all_users.each do |a_user| %>
+      <option value="<%= a_user.id %>">
+        <%= a_user.username %>
+        
+        (<%= a_user.own_photos.count %> photos)
+      </option>
+    <% end %>
+  </select>
+
+  <button>
+    Add photo
+  </button>
+</form>
