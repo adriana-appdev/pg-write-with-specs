@@ -20,7 +20,6 @@ class PicturesController < ApplicationController
   end
   
   def byyyeee
-    
     pic_id = params.fetch("id_to_delete")
     picture = Photo.where({:id => pic_id}).at(0)
     
@@ -32,6 +31,17 @@ class PicturesController < ApplicationController
   def blank_form 
     @all_users = User.all.order({ :username => :asc })
     render("pic_templates/new_form.html.erb")
+  end
+  
+  def save_new_row
+    p = Photo.new
+    p.image = params.fetch("pic_image")
+    p.caption = params.fetch("pic_caption")
+    p.owner_id = params.fetch("poster_id")
+    
+    p.save
+    
+    redirect_to("/recent")
   end
   
 end
