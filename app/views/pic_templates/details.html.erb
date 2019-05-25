@@ -27,10 +27,13 @@
   </dd>
   
   <dt>Danger Zone</dt>
+# NEEDS UPDATE PHOTO RECORD
   <dd>
     <a href= "/delete_photo/<%@pic.id %>">Delete photo</a> 
   </dd>
 </dl>
+
+<dt><h2> Comments</h2></dt>
 
 <table>
   <tr>
@@ -55,3 +58,36 @@
   </tr>
   <% end %>
 </table>
+
+<h2> Add a new comment </h2>
+<form>
+  
+  <label for="owner_dropdown">
+    Commenter
+  </label>
+  
+  <select id="owner_dropdown" name="poster_id">
+    <% @all_users.each do |a_user| %>
+      <option value="<%= a_user.id %>">
+        <%= a_user.username %>
+        
+        (<%= a_user.own_photos.count %> photos)
+      </option>
+    <% end %>
+  
+  </select>
+    <label for="comment_box">
+    Comment
+  </label>
+  
+  <textarea
+    id="comment_box"
+    name="pic_comment"
+    placeholder="Enter a comment..."
+  ></textarea>
+  
+    <button>
+    Add comment
+  </button>
+</form>
+

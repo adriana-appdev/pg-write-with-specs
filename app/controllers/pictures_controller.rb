@@ -15,6 +15,8 @@ class PicturesController < ApplicationController
     photo_id = params.fetch("some_id")
 
     @pic = Photo.where({ :id => photo_id }).at(0)
+    
+    @all_users = User.all.order({ :username => :asc })
 
     render("pic_templates/details.html.erb")
   end
@@ -44,4 +46,12 @@ class PicturesController < ApplicationController
     redirect_to("/recent")
   end
   
+  def prefilled_form
+    pic_id = params.fetch("id_to_update")
+    
+    @photo = Photo.where({ :id => pic_id }).at(0)
+    
+    render("pic_templates/edit_form.html.erb")
+  end 
+
 end
