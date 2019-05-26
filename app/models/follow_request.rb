@@ -12,13 +12,13 @@
 
 class FollowRequest < ApplicationRecord
   # def sender
-  #   return User.where({ :id => self.sender_id }).at(0)
-  # end
+ #  return User.where({ :id => self.sender_id }).at(0)
+ #  end
 
   belongs_to(:sender, { :class_name => "User", :foreign_key => "sender_id" })
 
   # def recipient
-  #   return User.where({ :id => self.recipient_id }).at(0)
+  # return User.where({ :id => self.recipient_id }).at(0)
   # end
 
   belongs_to(:recipient, { :class_name => "User", :foreign_key => "recipient_id" })

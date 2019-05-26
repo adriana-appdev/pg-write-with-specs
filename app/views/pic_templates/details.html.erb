@@ -27,11 +27,20 @@
   
   <dt>Add a fan</dt>
   <dd><label for="fan_dropdown"> Person</label></dd>
-  <button>
-    Add fan
-  </button> 
+ 
+#BUTTON DOES NOT WORK
   </dd>
-
+  <select id="fan_dropdown" name="fan_id">
+    <% User.all.order({:username => :asc}).each do |user| %>
+      <option value="<%= user.id %>">
+        <%= user.username %>
+      </option>
+    <% end %>
+      </select>
+    <button>
+      Add fan
+    </button>   
+      
   
   <dt>Danger Zone</dt>
   # EDIT BUTTON DOES NOT WORK
@@ -70,7 +79,7 @@
 </table>
 
 <h2> Add a new comment </h2>
-<form action="/add_comment">
+<form action="/add_comment/:picture_id">
   
   <label for="commenter_dropdown">
     Commenter

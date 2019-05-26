@@ -65,10 +65,18 @@ class PicturesController < ApplicationController
     redirect_to("/photos/" + photo_id)
   end
 
-
-
+  def add_fan
+    @all_users = User.all.order({ :username => :asc }).at(0)
+    fan_id = params.fetch("id")
+    
+    p.save   
+    
+    redirect_to("/photos/" + fan_id)
+  end 
+  
+  
   def add_comment
-    pic_id = params.fetch("<strong>picture_id</strong>")
+    pic_id = params.fetch("picture_id")
     @pic = Photo.where({:id => pic_id}).at(0)
 
     p = Comment.new
