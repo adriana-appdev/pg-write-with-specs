@@ -34,7 +34,10 @@
 
   
   <dt>Danger Zone</dt>
-# NEEDS UPDATE PHOTO RECORD
+  # EDIT BUTTON DOES NOT WORK
+  <dd>
+    <a href= "/existing_photo_form/<%@pic.id %>">Edit photo</a> 
+  </dd>
   <dd>
     <a href= "/delete_photo/<%@pic.id %>">Delete photo</a> 
   </dd>
@@ -67,18 +70,16 @@
 </table>
 
 <h2> Add a new comment </h2>
-<form>
+<form action="/add_comment">
   
-  <label for="owner_dropdown">
+  <label for="commenter_dropdown">
     Commenter
   </label>
   
-  <select id="owner_dropdown" name="poster_id">
-    <% @all_users.each do |a_user| %>
-      <option value="<%= a_user.id %>">
-        <%= a_user.username %>
-        
-        (<%= a_user.own_photos.count %> photos)
+  <select id="commenter_dropdown" name="commenter_id">
+    <% User.all.order({:username => :asc}).each do |user| %>
+      <option value="<%= user.id %>">
+        <%= user.username %>
       </option>
     <% end %>
   
@@ -89,7 +90,8 @@
   
   <textarea
     id="comment_box"
-    name="pic_comment"
+    name="comment_caption"
+    value="<%= @pic.id %>" 
     placeholder="Enter a comment..."
   ></textarea>
   
